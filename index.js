@@ -21,10 +21,16 @@ const server = http.createServer((req, res) => {
       author: "Your Name",
       description: "A tiny enhanced Hello World app for practicing Git",
     };
+  } else if (req.url === "/health") {
+    response = {
+      status: "✅ OK",
+      uptime: process.uptime().toFixed(2) + "s",
+      timestamp: new Date().toISOString(),
+    };
   } else {
     response = {
       error: "❌ Route not found",
-      available_routes: ["/", "/about"],
+      available_routes: ["/", "/about", "/health"],
     };
   }
 
